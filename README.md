@@ -24,4 +24,4 @@ poetry add mangacollec_api
 pip install git+https://github.com/shooter-dev/mangacollec_lib.git
 ```
 
----
+---# Nouvelle ligne pour différencier les branches
