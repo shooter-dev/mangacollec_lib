@@ -1,16 +1,134 @@
 [project]
 name = "mangacollectlib"
 version = "0.1.0"
-description = ""
+description = "Bibliothèque Python moderne pour l'API MangaCollec"
 authors = [
-    {name = "shooterdev",email = "31919820+shooter-dev@users.noreply.github.com"}
+    {name = "shooterdev", email = "31919820+shooter-dev@users.noreply.github.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
 ]
 
+[tool.poetry]
+name = "mangacollectlib"
+version = "0.1.0"
+description = "Bibliothèque Python moderne pour l'API MangaCollec"
+authors = ["shooterdev <31919820+shooter-dev@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "mangacollec", from = "src"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+black = "^25.1.0"
+isort = "^6.0.1"
+ruff = "^0.12.8"
+mypy = "^1.17.1"
+pre-commit = "^4.2.0"
+
+# Configuration Black
+[tool.black]
+line-length = 88
+target-version = ['py313']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+# Configuration isort
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["mangacollec"]
+
+# Configuration Ruff
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# Configuration MyPy
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+# Configuration pytest
+[tool.pytest.ini_options]
+testpaths = ["tests", "src"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--cov=mangacollec",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-fail-under=80",
+]
+
+# Configuration coverage
+[tool.coverage.run]
+source = ["src/mangacollec"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
