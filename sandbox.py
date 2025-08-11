@@ -1,6 +1,6 @@
 import os
 
-from mangacollec.author.endpoint.author_endpoint import AuthorEndpoint
+from mangacollec.author import AuthorEndpoint
 from mangacollec.client import MangaCollecAPIClient
 
 if __name__ == '__main__':
@@ -22,6 +22,8 @@ if __name__ == '__main__':
 
     api_anonyme = AuthorEndpoint(client_anonyme)
 
-    api_password = AuthorEndpoint(client_password)
+    api_author_password = AuthorEndpoint(client_password)
 
-    print(api_password.get_all_authors_v2())
+    print(api_author_password.get_all_authors_v2())
+
+    print(api_author_password.get_author_by_id_v2("7b785193-5f0d-4306-9c7e-d4e97ddd7571"))
