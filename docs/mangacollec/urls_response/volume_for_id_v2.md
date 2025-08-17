@@ -1,3 +1,34 @@
+# Endpoint Volume for ID `6e22eae9-2afd-45ba-8c26-d10d4224d5bf`
+
+- **url** : `https://api.mangacollec.com/v2/volumes/{id}`
+- **methodes** : `GET`
+
+---
+
+## Header
+
+```json
+{
+  "Authorization" : "Bearer {token}",
+  "Accept" : "application/json",
+  "Content-Type" : "application/json",
+  "User-Agent" : ""
+}
+```
+
+---
+
+## Body
+
+```json
+{}
+```
+
+---
+
+## Response
+
+```json
 {
     "volumes": [
         {
@@ -99,30 +130,6 @@
             "box_id": "c4760ffd-0e9b-4bee-ad7b-49386eefd892",
             "volume_id": "6e22eae9-2afd-45ba-8c26-d10d4224d5bf",
             "included": true
-        },
-        {
-            "id": "e76deeeb-b203-475f-83b4-45745ea499a9",
-            "box_id": "dd06173a-1832-4d1d-b8cd-479716d6296d",
-            "volume_id": "6e22eae9-2afd-45ba-8c26-d10d4224d5bf",
-            "included": true
-        },
-        {
-            "id": "7f6cae73-b2fd-482f-a08f-3e7a495a60dd",
-            "box_id": "7d545edf-99f3-4c8a-afe0-6450a0425f01",
-            "volume_id": "6e22eae9-2afd-45ba-8c26-d10d4224d5bf",
-            "included": true
-        },
-        {
-            "id": "5ff94bd7-ba71-4e68-af9d-1013e7d053c5",
-            "box_id": "9f86e823-18d7-434a-a709-6e9e161b1d22",
-            "volume_id": "6e22eae9-2afd-45ba-8c26-d10d4224d5bf",
-            "included": true
-        },
-        {
-            "id": "8607d0ce-f5d1-4658-ae9d-d3932b8cfd12",
-            "box_id": "fde8b201-c6b5-44ff-a7f5-36e99a75bb69",
-            "volume_id": "6e22eae9-2afd-45ba-8c26-d10d4224d5bf",
-            "included": true
         }
     ],
     "boxes": [
@@ -161,54 +168,6 @@
             "box_edition_id": "dd7b6ebc-f372-4968-934f-6c8f7cd95e76",
             "box_possessions_count": 60,
             "image_url": "https://images-eu.ssl-images-amazon.com/images/I/51tOW5Sil%2BL.jpg"
-        },
-        {
-            "id": "a8832564-df86-4ba2-8447-846a8f4a0e4f",
-            "title": "Starter pack",
-            "number": 0,
-            "release_date": "2022-08-24",
-            "isbn": "9782818996805",
-            "asin": "2818996805",
-            "commercial_stop": false,
-            "box_edition_id": "7e12aff0-98c9-46d1-b152-adc1e485bca5",
-            "box_possessions_count": 226,
-            "image_url": "https://m.media-amazon.com/images/I/51trMJeCHRL.jpg"
-        },
-        {
-            "id": "dd06173a-1832-4d1d-b8cd-479716d6296d",
-            "title": "Tome 1 + carnet offert ",
-            "number": 1,
-            "release_date": "2019-06-26",
-            "isbn": "9782818974841",
-            "asin": "2818974844",
-            "commercial_stop": true,
-            "box_edition_id": "833ba708-44dd-4e0d-b7e3-317a70e4ebdd",
-            "box_possessions_count": 82,
-            "image_url": "https://images-eu.ssl-images-amazon.com/images/I/41%2BeJTRplML.jpg"
-        },
-        {
-            "id": "fde8b201-c6b5-44ff-a7f5-36e99a75bb69",
-            "title": "Pack Promo",
-            "number": 0,
-            "release_date": "2024-06-05",
-            "isbn": "9791041107445",
-            "asin": "B0CRKKQ6RP",
-            "commercial_stop": false,
-            "box_edition_id": "dd7b6ebc-f372-4968-934f-6c8f7cd95e76",
-            "box_possessions_count": 44,
-            "image_url": "https://m.media-amazon.com/images/I/51igejEBLTL.jpg"
-        },
-        {
-            "id": "c4760ffd-0e9b-4bee-ad7b-49386eefd892",
-            "title": "Starter Promo",
-            "number": 0,
-            "release_date": "2018-02-07",
-            "isbn": "9782818944400",
-            "asin": "2818944406",
-            "commercial_stop": true,
-            "box_edition_id": "37a6683d-3ad4-45ec-b921-65726fc2ee35",
-            "box_possessions_count": 44,
-            "image_url": "https://images-eu.ssl-images-amazon.com/images/I/514rtCr4aHL.jpg"
         }
     ],
     "box_editions": [
@@ -235,22 +194,7 @@
             "boxes_count": 3,
             "adult_content": false,
             "box_follow_editions_count": 240
-        },
-        {
-            "id": "833ba708-44dd-4e0d-b7e3-317a70e4ebdd",
-            "title": "The Rising of the Shield Hero",
-            "publisher_id": "c1866645-afb4-44dd-bdce-420606488352",
-            "boxes_count": 1,
-            "adult_content": false,
-            "box_follow_editions_count": 125
-        },
-        {
-            "id": "6991f796-6c25-4a13-b44c-44d01cdda3c4",
-            "title": "The Rising of the Shield Hero",
-            "publisher_id": "c1866645-afb4-44dd-bdce-420606488352",
-            "boxes_count": 1,
-            "adult_content": false,
-            "box_follow_editions_count": 49
         }
     ]
 }
+```
