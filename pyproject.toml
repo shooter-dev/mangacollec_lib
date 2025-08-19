@@ -1,22 +1,55 @@
-[project]
+[tool.poetry]
 name = "mangacollectlib"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "shooterdev",email = "vincentbleach@gmail.com"}
-]
+description = "Bibliothèque Python pour interagir avec l'API MangaCollec"
+authors = ["shooterdev <vincentbleach@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-]
+license = "MIT"
+packages = [{include = "mangacollec", from = "src"}]
 
+[tool.poetry.dependencies]
+python = ">=3.12"
+requests = "^2.31.0"
+pydantic = "^2.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+pytest-cov = "^4.0.0"
+black = "^23.0.0"
+flake8 = "^6.0.0"
+mypy = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
-python_version = "3.13"
+python_version = "3.12"
 mypy_path = "src"
 namespace_packages = true
 explicit_package_bases = true
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.pytest.ini_options]
+testpaths = ["src"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=mangacollec --cov-report=term-missing --cov-report=html"
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
