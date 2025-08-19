@@ -1,8 +1,8 @@
 from typing import Dict, Any, List
 
 from mangacollec.author.converter.author_converter import AuthorConverter
-from mangacollec.author.responces.author_responce import AuthorEndpointResponce
-from mangacollec.author.responces.authors_responce import AuthorsEndpointResponce
+from mangacollec.author.responses.author_response import AuthorEndpointResponse
+from mangacollec.author.responses.authors_response import AuthorsEndpointResponse
 from mangacollec.client.interfaces.client_interface import IMangaCollecAPIClient
 from mangacollec.author.interfaces.author_endpoint_interface import IAuthorsEndpoint
 from mangacollec.author.entity.author import Author
@@ -16,13 +16,13 @@ class AuthorEndpoint(IAuthorsEndpoint):
     
     def __init__(self, client: IMangaCollecAPIClient):
         """
-        Initialise le endpoint des auteurs.
-        
+        Initialise endpoint des auteurs.
+
         :param client: Client API MangaCollec
         """
         self.client = client
 
-    def get_all_authors(self) -> Dict[str, Any]:
+    def get_all(self) -> Dict[str, Any]:
         """
         Récupère la liste complète des auteurs disponibles sur MangaCollec.
 
@@ -30,7 +30,7 @@ class AuthorEndpoint(IAuthorsEndpoint):
         """
         return self.client.get("/v1/authors")
 
-    def get_author_by_id(self, author_id: str) -> Dict[str, Any]:
+    def get_by_id(self, author_id: str) -> Dict[str, Any]:
         """
         Récupère un auteur spécifique à partir de son ID.
 
@@ -39,11 +39,11 @@ class AuthorEndpoint(IAuthorsEndpoint):
         """
         return self.client.get(f"/v1/authors/{author_id}")
 
-    def get_all_authors_v2(self) -> AuthorsEndpointResponce:
+    def get_all_v2(self) -> AuthorsEndpointResponse:
         """
         Récupère la liste complète des auteurs disponibles sur MangaCollec (API v2).
 
-        :return: AuthorsEndpointResponce
+        :return: AuthorsEndpointResponse
         """
         result_endpoint = self.client.get("/v2/authors")
 
@@ -54,9 +54,9 @@ class AuthorEndpoint(IAuthorsEndpoint):
         for item_author in result_endpoint['authors']:
             authors.append(converter.deserialize(item_author))
 
-        return AuthorsEndpointResponce(authors=authors)
+        return AuthorsEndpointResponse(authors=authors)
 
-    def get_author_by_id_v2(self, author_id: str) -> AuthorEndpointResponce:
+    def get_by_id_v2(self, author_id: str) -> AuthorEndpointResponse:
         """
         Récupère un auteur spécifique à partir de son ID (API v2).
 
@@ -72,4 +72,4 @@ class AuthorEndpoint(IAuthorsEndpoint):
             for item_author in result_endpoint['authors']:
                 authors.append(converter.deserialize(item_author))
         
-        return AuthorEndpointResponce(authors=authors)
+        return AuthorEndpointResponse(authors=authors)

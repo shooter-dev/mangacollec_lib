@@ -1,10 +1,12 @@
 import time
+from http import HTTPStatus
+from typing import Dict
 
 import requests
 from requests import Response
 
 from mangacollec.auth import AuthMangaCollec, IAuthMangaCollec
-from mangacollec.auth.responce.token_responce import TokenResponce
+from mangacollec.auth.response.token_response import TokenResponse
 from mangacollec.client.interfaces.client_interface import IMangaCollecAPIClient
 
 
@@ -24,10 +26,10 @@ class MangaCollecAPIClient(IMangaCollecAPIClient):
 
         # Vérifie si les credentials utilisateur sont disponibles.
         if self._has_user_credentials(): # fair un client password
-            token_response: TokenResponce = auth.authenticate_with_password(self.email, self.password)
+            token_response: TokenResponse = auth.authenticate_with_password(self.email, self.password)
             self.is_auth = bool(token_response.access_token)
         else: # alor création d'un client anonyme
-            token_response: TokenResponce = auth.authenticate_with_client_credentials()
+            token_response: TokenResponse = auth.authenticate_with_client_credentials()
             self.is_auth = False
 
         # Met à jour les propriétés de token depuis la réponse du module auth
@@ -39,7 +41,7 @@ class MangaCollecAPIClient(IMangaCollecAPIClient):
         return bool(self.email and self.password)
 
 
-    def _update_token_from_token_response(self, token_response: TokenResponce) -> None:
+    def _update_token_from_token_response(self, token_response: TokenResponse) -> None:
         """Met à jour les propriétés de token depuis la réponse du module auth."""
         self.access_token = token_response.access_token
         self.token_type = token_response.token_type
@@ -97,7 +99,7 @@ class MangaCollecAPIClient(IMangaCollecAPIClient):
             self._authenticate()
 
 
-    def _call_request(self, method: str, endpoint: str, **kwargs) -> Response:
+    def _call_request(self, method: str, endpoint: str, **kwargs) -> Response | Dict:
         """
         Effectue une requête HTTP authentifiée credentials/password.
         """
@@ -114,6 +116,9 @@ class MangaCollecAPIClient(IMangaCollecAPIClient):
         )
 
         response.raise_for_status()
+
+        if response.status_code == HTTPStatus.NO_CONTENT:
+            return {}
 
         return response.json()
 
@@ -132,11 +137,11 @@ class MangaCollecAPIClient(IMangaCollecAPIClient):
         return self._call_request("POST", endpoint, json=data)
 
 
-    def delete(self, endpoint: str) -> Response:
+    def delete(self, endpoint: str, data: dict | None = None) -> Response:
         """
         Effectue une requête DELETE vers l'API.
         """
-        return self._call_request("DELETE", endpoint)
+        return self._call_request("DELETE", endpoint, json=data)
 
     def __repr__(self) -> str:
         """

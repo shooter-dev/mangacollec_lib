@@ -1,8 +1,8 @@
 from unittest.mock import Mock
 from mangacollec.author.endpoint.author_endpoint import AuthorEndpoint
 from mangacollec.author.entity.author import Author
-from mangacollec.author.responces.author_responce import AuthorEndpointResponce
-from mangacollec.author.responces.authors_responce import AuthorsEndpointResponce
+from mangacollec.author.responses.author_response import AuthorEndpointResponse
+from mangacollec.author.responses.authors_response import AuthorsEndpointResponse
 from mangacollec.client import IMangaCollecAPIClient
 
 
@@ -20,13 +20,13 @@ class TestSerieEndpointV2:
             "authors": [
                 {
                     "id": "370ac96c-49e0-4f09-b7c4-662cb1374b21",
-                    "name": "Kishimoto",
+                    "title": "Kishimoto",
                     "first_name": "Masashi",
                     "tasks_count": 32
                 },
                 {
                     "id": "e6cc4590-0b5e-4122-9428-b9b185bdb221",
-                    "name": "Oda",
+                    "title": "Oda",
                     "first_name": "Eiichirō",
                     "tasks_count": 29
                 }
@@ -39,7 +39,7 @@ class TestSerieEndpointV2:
 
         self.mock_client.get.assert_called_once_with("/v2/authors")
 
-        assert isinstance(result, AuthorsEndpointResponce)
+        assert isinstance(result, AuthorsEndpointResponse)
         assert len(result.authors) == 2
 
         assert all(isinstance(author, Author) for author in result.authors)
@@ -50,7 +50,7 @@ class TestSerieEndpointV2:
             "authors": [
                 {
                     "id": "381c5429-93b2-494d-857d-ceb2b701f876",
-                    "name": "Yamada",
+                    "title": "Yamada",
                     "first_name": "Kanehito",
                     "tasks_count": 3
                 }
@@ -479,10 +479,10 @@ class TestSerieEndpointV2:
 
         self.mock_client.get.return_value = api_response
 
-        result = self.endpoint.get_author_by_id_v2("381c5429-93b2-494d-857d-ceb2b701f876")
+        result = self.endpoint.get_by_id_v2("381c5429-93b2-494d-857d-ceb2b701f876")
 
         self.mock_client.get.assert_called_once_with("/v2/authors/381c5429-93b2-494d-857d-ceb2b701f876")
-        assert isinstance(result, AuthorEndpointResponce)
+        assert isinstance(result, AuthorEndpointResponse)
         assert len(result.authors) == 1
         assert result.authors[0].id == "381c5429-93b2-494d-857d-ceb2b701f876"
         assert result.authors[0].name == "Yamada"

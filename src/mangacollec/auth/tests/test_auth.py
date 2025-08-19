@@ -76,7 +76,7 @@ class TestOAuth2Authenticator:
             }
         )
 
-        # Verify the response - result is now a TokenResponce object
+        # Verify the response - result is now a TokenResponse object
         assert result.access_token == "test_access_token"
         assert result.refresh_token == "test_refresh_token"
 
@@ -148,7 +148,7 @@ class TestOAuth2Authenticator:
             }
         )
 
-        # Verify the response - result is now a TokenResponce object
+        # Verify the response - result is now a TokenResponse object
         assert result.access_token == "test_access_token"
         assert result.token_type == "Bearer"
 

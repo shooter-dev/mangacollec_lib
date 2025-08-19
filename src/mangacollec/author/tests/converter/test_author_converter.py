@@ -18,7 +18,7 @@ class TestAuthorConverter:
 
         data = {
             "id": "370ac96c-49e0-4f09-b7c4-662cb1374b21",
-            "name": "Kishimoto",
+            "title": "Kishimoto",
             "first_name": "Masashi",
             "tasks_count": 32
         }
@@ -37,7 +37,7 @@ class TestAuthorConverter:
 
         data = {
             "id": "13dfa960-ba31-40a2-9d46-387807a4f70f",
-            "name": "One",
+            "title": "One",
             "first_name": "",
             "tasks_count": 5
         }
@@ -56,7 +56,7 @@ class TestAuthorConverter:
 
         data = {
             "id": "13dfa960-ba31-40a2-9d46-387807a4f70f",
-            "name": "One",
+            "title": "One",
             "first_name": "",
             # "tasks_count" manquant
         }
@@ -82,7 +82,7 @@ class TestAuthorConverter:
         """Test avec champs supplémentaires ignorés."""
         data = {
             "id": "370ac96c-49e0-4f09-b7c4-662cb1374b21",
-            "name": "Kishimoto",
+            "title": "Kishimoto",
             "first_name": "Masashi",
             "tasks_count": 32,
             "extra_field": "should_be_ignored"
@@ -101,7 +101,7 @@ class TestAuthorConverter:
         """Test avec tasks_count à 0."""
         data = {
             "id": "619724eb-5748-4fa5-80ac-e8434218bbc9",
-            "name": "Niwa",
+            "title": "Niwa",
             "first_name": "Haruki",
             "tasks_count": 0
         }
@@ -119,7 +119,7 @@ class TestAuthorConverter:
         """Test avec des types invalides."""
         data = {
             "id": 123,  # int au lieu de str
-            "name": "Kishimoto",
+            "title": "Kishimoto",
             "first_name": "Masashi",
             "tasks_count": "32"  # str au lieu de int
         }
@@ -131,7 +131,7 @@ class TestAuthorConverter:
         """Test avec tasks_count négatif."""
         data = {
             "id": "619724eb-5748-4fa5-80ac-e8434218bbc9",
-            "name": "Niwa",
+            "title": "Niwa",
             "first_name": "Haruki",
             "tasks_count": -1
         }
@@ -160,7 +160,7 @@ class TestAuthorConverter:
         assert isinstance(data_dict, Dict)
 
         assert data_dict["id"] == "370ac96c-49e0-4f09-b7c4-662cb1374b21"
-        assert data_dict["name"] == "Kishimoto"
+        assert data_dict["title"] == "Kishimoto"
         assert data_dict["first_name"] == "Masashi"
         assert data_dict["tasks_count"] == 32
 
@@ -179,7 +179,7 @@ class TestAuthorConverter:
         assert isinstance(data_dict, Dict)
 
         assert data_dict["id"] == "13dfa960-ba31-40a2-9d46-387807a4f70f"
-        assert data_dict["name"] == "One"
+        assert data_dict["title"] == "One"
         assert data_dict["first_name"] is None
         assert data_dict["tasks_count"] == 5
 

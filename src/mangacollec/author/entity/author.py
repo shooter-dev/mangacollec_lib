@@ -1,12 +1,12 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Author(BaseModel):
     id: str
     name: str
     first_name: str | None
-    tasks_count: int
+    tasks_count: Optional[int] = None
 
     def __str__(self):
         if self.first_name is None:

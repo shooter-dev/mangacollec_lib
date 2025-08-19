@@ -7,7 +7,7 @@
 
 ## Header
 
-```json
+ ```json
 {
   "Authorization" : "Bearer {token}",
   "Accept" : "application/json",

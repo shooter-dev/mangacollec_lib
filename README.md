@@ -76,10 +76,9 @@ result: AuthorsEndpointResponce = endpoint_author.get_all_authors_v2()
 ```python
 from mangacollec.author import AuthorEndpoint, AuthorEndpointResponce
 
-
 endpoint_author = AuthorEndpoint(client)
 
-result: AuthorEndpointResponce = endpoint_author.get_author_by_id_v2("7b785193-5f0d-4306-9c7e-d4e97ddd7571")
+result: AuthorEndpointResponce = endpoint_author.get_by_id_v2("7b785193-5f0d-4306-9c7e-d4e97ddd7571")
 ```
 ##### Responce:
 

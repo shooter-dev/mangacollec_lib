@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from mangacollec.auth.responce.token_responce import TokenResponce
+from mangacollec.auth.response.token_response import TokenResponse
 
 
 class IAuthMangaCollec(ABC):
@@ -27,7 +27,7 @@ class IAuthMangaCollec(ABC):
         self.client_secret = client_secret
 
     @abstractmethod
-    def authenticate_with_password(self, username: str, password: str) -> TokenResponce:
+    def authenticate_with_password(self, username: str, password: str) -> TokenResponse:
         """
         Authentifie l'utilisateur avec email/mot de passe (grant_type=password).
 
@@ -39,7 +39,7 @@ class IAuthMangaCollec(ABC):
         """
 
     @abstractmethod
-    def authenticate_with_client_credentials(self) -> TokenResponce:
+    def authenticate_with_client_credentials(self) -> TokenResponse:
         """
         Authentifie via client_id/client_secret uniquement (grant_type=client_credentials).
 

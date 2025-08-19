@@ -83,7 +83,7 @@ class IMangaCollecAPIClient(ABC):
         pass
 
     @abstractmethod
-    def delete(self, endpoint: str) -> dict | list | None:
+    def delete(self, endpoint: str, data: dict | None = None) -> dict | list | None:
         """
         Effectue une requête DELETE vers l'API.
         """

@@ -4,7 +4,7 @@ from mangacollec.auth.interfaces.auth_interface import IAuthMangaCollec
 from mangacollec.auth.entity.payload_client_abstract import PayloadClientAbstract
 from mangacollec.auth.entity.payload_client_credential import PayloadClientCredential
 from mangacollec.auth.entity.payload_client_password import PayloadClientPassword
-from mangacollec.auth.responce.token_responce import TokenResponce
+from mangacollec.auth.response.token_response import TokenResponse
 
 
 class AuthMangaCollec(IAuthMangaCollec):
@@ -26,7 +26,7 @@ class AuthMangaCollec(IAuthMangaCollec):
         "User-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     }
 
-    def authenticate_with_password(self, username: str, password: str) -> TokenResponce:
+    def authenticate_with_password(self, username: str, password: str) -> TokenResponse:
         """
         Authentifie l'utilisateur avec email/mot de passe (grant_type=password).
 
@@ -42,7 +42,7 @@ class AuthMangaCollec(IAuthMangaCollec):
         return self._execute_auth_request(payload, "Identifiants invalides")
 
 
-    def authenticate_with_client_credentials(self) -> TokenResponce:
+    def authenticate_with_client_credentials(self) -> TokenResponse:
         """
         Authentifie via client_id/client_secret uniquement (grant_type=client_credentials).
 
@@ -76,7 +76,7 @@ class AuthMangaCollec(IAuthMangaCollec):
         )
 
 
-    def _execute_auth_request(self, payload: PayloadClientAbstract, error_401_msg: str) -> TokenResponce:
+    def _execute_auth_request(self, payload: PayloadClientAbstract, error_401_msg: str) -> TokenResponse:
         """Exécute la requête d'authentification et gère les erreurs."""
         try:
             response = requests.post(
@@ -87,7 +87,7 @@ class AuthMangaCollec(IAuthMangaCollec):
 
             response_data = response.json()
             
-            return TokenResponce(
+            return TokenResponse(
                 access_token=response_data["access_token"],
                 token_type=response_data["token_type"],
                 expires_in=response_data["expires_in"],

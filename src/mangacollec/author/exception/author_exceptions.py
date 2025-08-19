@@ -27,6 +27,13 @@ class AuthorValidationError(BadRequestError):
         self.value = value
 
 
+class AuthorServiceError(AuthorError):
+    """Erreur levée par le service des auteurs."""
+    
+    def __init__(self, message: str = "Erreur dans le service des auteurs"):
+        super().__init__(message)
+
+
 class AuthorCreationError(AuthorError):
     """Erreur levée lors de la création d'un auteur."""
     
